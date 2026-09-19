@@ -1,6 +1,7 @@
 """
 CMPS 2200  Assignment 2.
 See assignment-02.pdf for details.
+Name: Nahema Dumonteil
 """
 import time
 
