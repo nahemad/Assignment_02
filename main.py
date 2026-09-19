@@ -31,7 +31,7 @@ def quadratic_multiply(x, y):
             x_bit = int(x.binary_vec[0]) if len(x.binary_vec) > 0 else 0
             y_bit = int(y.binary_vec[0]) if len(y.binary_vec) > 0 else 0
             result= x_bit * y_bit
-            return BinaryNumber(result)
+            return result
 
     # if its more than 1 and odd, then add one
     if n%2 != 0:
@@ -61,8 +61,8 @@ def quadratic_multiply(x, y):
     x_r_y_l = quadratic_multiply(BinaryNumber(x_r_num), BinaryNumber(y_l_num))
 
     #the left value shifted, plus the middle values added and shifter plus the right value
-    result = (x_l_y_l.decimal_val * (2**(n))) + ((x_l_y_r.decimal_val + x_r_y_l.decimal_val) * (2**(mid))) + x_r_y_r.decimal_val
-    return BinaryNumber(result)
+    result = (x_l_y_l* (2**(n))) + ((x_l_y_r + x_r_y_l) * (2**(mid))) + x_r_y_r
+    return result
     ###
 
 def subquadratic_multiply(x, y, is_top_level=True):
@@ -75,7 +75,7 @@ def subquadratic_multiply(x, y, is_top_level=True):
         x_bit = int(x.binary_vec[0]) if len(x.binary_vec) > 0 else 0
         y_bit = int(y.binary_vec[0]) if len(y.binary_vec) > 0 else 0
         result= x_bit * y_bit
-        return BinaryNumber(result)
+        return result 
     
         # if its more than 1 and odd, then add one
     #if n%2 != 0:
@@ -116,13 +116,11 @@ def subquadratic_multiply(x, y, is_top_level=True):
     sum_x = x_l_num + x_r_num
     sum_y = y_l_num + y_r_num
 
-    bin_sum_x = BinaryNumber(sum_x)
-    bin_sum_y = BinaryNumber(sum_y)
-    middle = subquadratic_multiply(bin_sum_x, bin_sum_y, is_top_level=False)
+    middle = subquadratic_multiply(BinaryNumber(sum_x), BinaryNumber(sum_y), is_top_level=False)
 
     #the left value shifted, plus the middle values added and shifter plus the right value
-    result = (x_l_y_l.decimal_val *(2**(n)) + (middle.decimal_val - x_l_y_l.decimal_val - x_r_y_r.decimal_val)*(2**(mid)) + x_r_y_r.decimal_val)
-    return BinaryNumber(result)
+    result = (x_l_y_l*(2**(n)) + (middle - x_l_y_l - x_r_y_r)*(2**(mid)) + x_r_y_r)
+    return result 
     #pass
     ###
 
